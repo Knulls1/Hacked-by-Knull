@@ -1,0 +1,179 @@
+/* GENEL */
+body{
+  margin:0;
+  background:#000;
+  color:#fff;
+  font-family:'JetBrains Mono', monospace;
+  scroll-behavior:smooth;
+}
+
+/* NEON FRAME DYNAMIC */
+#neon-frame {
+  position: relative;
+  padding: 20px;
+  z-index: 10;
+}
+
+/* pseudo-element ile hareketli neon çerçeve */
+#neon-frame::before {
+  content: '';
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  pointer-events: none;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  z-index: 100;
+
+  /* Dinamik neon gradient efekti */
+  border-image: linear-gradient(
+    90deg,
+    rgba(255,0,0,0.2),
+    rgba(255,0,0,0.8),
+    rgba(255,0,0,0.2),
+    rgba(255,0,0,0.8)
+  ) 1;
+  animation: flow 2s linear infinite;
+  box-shadow: 0 0 10px rgba(255,0,0,0.6),
+              0 0 20px rgba(255,0,0,0.4),
+              0 0 40px rgba(255,0,0,0.3);
+}
+
+@keyframes flow {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(3px); }
+  50% { transform: translateX(0); }
+  75% { transform: translateX(-3px); }
+  100% { transform: translateX(0); }
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start; /* üst hizalama */
+  align-items:center;
+  text-align:center;
+  position:relative;
+  padding-top:50px; /* üst boşluk */
+}
+
+/* Hero yazı kapsayıcı */
+.hero-text {
+  z-index: 2;
+}
+
+/* Video alanı */
+.hero-video {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  background: black; /* kapsayıcı siyah */
+  position: relative;
+  z-index: 1;
+}
+
+.hero-video video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: none;
+  display: block;
+  background: black; /* video elementinin arka planını da siyah yap */
+}
+
+h1{
+  font-size:4rem;
+  letter-spacing:4px;
+  color:#ff0000;
+  text-shadow:
+    0 0 5px red,
+    0 0 10px red,
+    0 0 20px red,
+    0 0 40px red;
+  animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 22%, 24%, 55% { opacity: 0.4; }
+}
+
+.subtitle{
+  opacity:0.7;
+  margin-bottom:20px;
+  position:relative;
+}
+
+.subtitle::after{
+  content:'|';
+  animation: blink 1s infinite;
+  margin-left:5px;
+}
+
+@keyframes blink{
+  0%, 50%, 100% {opacity:1;}
+  25%, 75% {opacity:0;}
+}
+
+/* SECTIONS */
+.section{
+  padding:80px 20px;
+  max-width:800px;
+  margin:auto;
+}
+
+h2{
+  margin-bottom:20px;
+  border-bottom:1px solid #333;
+  padding-bottom:10px;
+}
+
+.skill{
+  margin:15px 0;
+}
+
+.bar{
+  background:#111;
+  height:10px;
+  margin-top:5px;
+}
+
+.bar div{
+  background:#fff;
+  height:100%;
+  transition:1s;
+}
+
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+
+.card{
+  border:1px solid #333;
+  padding:20px;
+  transition:0.3s;
+}
+
+.card:hover{
+  background:#111;
+  transform:translateY(-5px);
+}
+
+.terminal{
+  background:#050505;
+  border:1px solid #333;
+  padding:15px;
+}
+
+#terminal-input{
+  width:100%;
+  background:black;
+  border:none;
+  color:white;
+  outline:none;
+  margin-top:10px;
+  font-family:inherit;
+}
